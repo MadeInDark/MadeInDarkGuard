@@ -1,0 +1,236 @@
+
+function Round(n)
+	tonumber(n)
+	return math.floor(n + 0.5)
+end
+
+
+	local thing
+	local tabmasuk = {} ------------ discord
+
+	while wait() do
+		--print(" Month "..date.month.."/".."Day "..date.day.."/".. "Year "..date.year.."Second "..date.second)
+	--	print("Minute "..os.date("%M" ).."Second "..os.date("%S" ))
+		
+		if os.date("%S") == "30" or os.date("%S") == "00" then
+			local str = "ipaushdfoaiusfdhipuashd"
+			-- print the character codes corresponding to A, B, and C
+		--	print(str:byte(1, 5)) -- 65  66  67
+
+			local t = {}
+			local c = ("A"):byte()
+			local x = ("a"):byte()
+			local num = ("1"):byte()
+
+			local bigsizestring = {}
+			local lowestring = {}
+			local number = {}
+			local cs2 = {}
+			for i = 0,25 do
+				--print(string.char(min + i))
+				--table.concat(t, ", ")
+				table.insert(bigsizestring,string.char(c + i))
+				table.insert(lowestring,string.char(x + i))
+				table.insert(number,string.char(num + i))
+			end
+
+			for i = 10,26 do
+				number[i] = nil
+			end
+
+			for i = 0,255 do
+				table.insert(cs2,string.char(i))
+			end
+
+			local function combine(...)
+				local tables = {...}
+				local totalContentCount = 0
+
+				for _,t in pairs(tables) do
+					totalContentCount += #t
+				end
+				local combined = table.create(totalContentCount)
+
+				for _,t in pairs(tables) do
+					table.move(t, 1, #t, #combined, combined)
+				end
+
+				return combined
+			end
+			--print(bigsizestring, lowestring,number)
+			local cs1 = combine(bigsizestring, lowestring,number)
+
+			--local cs1 = {table.unpack(bigsizestring),table.unpack(lowestring),table.unpack(cs2),table.unpack(num)}
+
+
+			--print(cs2)
+			local utc = os.date( "!%a %b %d, %H:%M")
+
+
+
+
+
+			local m = os.date("%M")
+			local h = os.date("%H") - tostring(m)
+			local s = os.date("%S") - tostring(m)
+			local d = os.date("%j")  - tostring(4) -- day of year
+			--print(type(m),type(h),type(s),type(d))
+			if m == "00" then
+				m = "1"
+			elseif m >= "30" then
+				m = m / 2
+			end
+			
+			if h <= 0  or s <= 0 or d <= 0 then
+				
+				 h = m
+				 s = os.date("%j") + tostring(4) -- day of year
+				 d = os.date("%j") 
+			end
+
+			if s == 00 then
+				s = 1
+			elseif s >= 24 or s == 25 then
+				s = s - 2
+			end
+		--	print(cs1)
+
+
+			local rx = {
+				[1] = number[2]..number[8]..lowestring[20]..lowestring[21]..lowestring[12]..lowestring[23],
+				[2] = lowestring[21]..number[3]..number[7]..lowestring[8]..number[9]..lowestring[2],
+				[3] = bigsizestring[22]..number[1]..number[6]..bigsizestring[5]..number[3]..lowestring[2],
+				[4] = number[4]..number[1]..lowestring[23]..lowestring[4]..bigsizestring[1]..lowestring[2],
+				[5] = lowestring[3]..lowestring[5]..lowestring[21]..bigsizestring[5]..number[1]..bigsizestring[2],
+				[6] = lowestring[7]..lowestring[11]..lowestring[22]..lowestring[6]..lowestring[1]..bigsizestring[2],
+				[7] = bigsizestring[8]..lowestring[21]..bigsizestring[23]..lowestring[22]..lowestring[1]..bigsizestring[2],
+				[8] = lowestring[5]..lowestring[14]..lowestring[24]..lowestring[21]..number[1]..lowestring[9],
+				[9] = lowestring[12]..lowestring[15]..lowestring[26]..lowestring[2]..bigsizestring[1]..lowestring[2],
+				[10] = lowestring[22]..lowestring[13]..lowestring[23]..lowestring[2]..lowestring[1]..bigsizestring[8],
+				[11] = bigsizestring[5]..lowestring[21]..number[2]..lowestring[4]..bigsizestring[1]..bigsizestring[2],
+				[12] = number[7]..lowestring[22]..lowestring[21]..lowestring[5]..bigsizestring[1]..lowestring[2],
+				[13] = bigsizestring[9]..bigsizestring[24]..lowestring[21]..number[7]..lowestring[1]..lowestring[2],
+				[14] = lowestring[1]..lowestring[21]..bigsizestring[23]..lowestring[6]..lowestring[1]..bigsizestring[7],
+				[15] = bigsizestring[3]..lowestring[17]..lowestring[24]..bigsizestring[7]..lowestring[1]..bigsizestring[2],
+				[16] = lowestring[17]..lowestring[18]..bigsizestring[22]..lowestring[25]..bigsizestring[1]..lowestring[2],
+				[17] = bigsizestring[15]..bigsizestring[15]..lowestring[24]..lowestring[2]..bigsizestring[1]..bigsizestring[2],
+				[18] = lowestring[16]..bigsizestring[16]..lowestring[25]..lowestring[3]..lowestring[1]..lowestring[2],
+				[19] = lowestring[21]..lowestring[1]..number[9]..bigsizestring[2]..bigsizestring[1]..bigsizestring[2],
+				[20] = number[9]..lowestring[1]..number[8]..lowestring[2]..bigsizestring[1]..lowestring[2],
+				[21] = lowestring[8]..lowestring[1]..number[7]..lowestring[5]..lowestring[1]..bigsizestring[2],
+				[22] = bigsizestring[7]..lowestring[16]..number[6]..number[7]..lowestring[1]..lowestring[2],
+				[23] = number[6]..lowestring[18]..lowestring[5]..lowestring[2]..bigsizestring[1]..bigsizestring[2],
+				[24] = number[5]..lowestring[19]..bigsizestring[3]..number[2]..number[1]..lowestring[2],
+			}
+
+			--print(cs1[d])
+			--print(number)
+
+
+
+			local pppp = 1
+			local kkkk = 1
+			m = m - s + h
+			s = s + m - h
+			
+			if m == 00 then
+				m = 1
+			elseif m >= 30 then
+				m = m / 2
+			end
+
+
+			if s == 00 then
+				s = 1
+			elseif s >= 24 or s == 25 then
+				s = s - 2
+			end
+			
+			
+			local args = string.split(m,tostring(0))
+			local lors = string.split(s,tostring(0))
+			for i = 1,5 do
+				if args[i] ~= nil then
+					pppp = args[i]
+				end
+			end
+
+			for i = 1,5 do
+				if lors[i] ~= nil then
+					kkkk = lors[i]
+				end
+			end
+			--print(m,s)
+			--print(pppp,h,kkkk)
+			
+			--[1802u3012uDOAWODIQWI_W!@I_I@)30409=219=1-20-=301203=1-203 rnd num ilajheo92-93-23
+			pppp = Round(pppp)
+			h = Round(h)
+			kkkk = Round(kkkk)
+			m = Round(m)
+			s = Round(s)
+			d = Round(d)
+			----]
+					
+		--	print(type(pppp),type(kkkk))
+			
+			if kkkk >= 59 then
+				repeat
+					kkkk /= 2
+				until kkkk <= 59
+			elseif kkkk <= 0 then
+					kkkk = 3
+				
+			end
+			
+			if h >= 25 then
+				repeat
+					h /= 2
+				until h <= 25
+			elseif h <= 0 then
+					h = 2
+				
+			end
+			
+			if pppp >= 59 then
+				repeat
+					pppp /= 2
+				until pppp <= 59
+			elseif pppp <= 0 then
+			pppp = 5
+				
+			end
+			
+			pppp = Round(pppp)
+			h = Round(h)
+			kkkk = Round(kkkk)
+			m = Round(m)
+			s = Round(s)
+			d = Round(d)
+			--print(pppp,h,kkkk)
+		--	print(cs1[tonumber(math.abs(pppp))],rx[tonumber(math.abs(h))],cs1[tonumber(math.abs(kkkk))])
+			--print(args[1],args[2],args[3],args[4],args[5])
+			local g = cs1[tonumber(math.abs(pppp))]..rx[tonumber(math.abs(h))]..cs1[tonumber(math.abs(kkkk))]
+
+		--	print(g)
+		--	print(h,g,kkkk)
+			if kkkk >= 25 then
+				repeat
+					kkkk /= 2
+				until kkkk <= 25
+				if kkkk <= 0 then
+					kkkk = 3
+				end
+			end
+			
+			pppp = Round(pppp)
+			h = Round(h)
+			kkkk = Round(kkkk)
+			m = Round(m)
+			s = Round(s)
+			d = Round(d)
+			
+			--print(rx[tonumber(os.date(math.abs(h)))],g,rx[tonumber(os.date(math.abs(kkkk)))])
+			_G.Password = rx[tonumber(os.date(math.abs(h)))]..g..rx[tonumber(os.date(math.abs(kkkk)))]
+		end
+	end
